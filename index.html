@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iPhone X Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+  
+  <figure>
+    <img src="frame.png" class="mobile" alt="" />
+    <div class="camera"></div>
+  <form class="container" name="calc">
+    
+    <div class="history">
+      <button id="hisClr" onclick="hisClr()">Clr</button>
+      <h2>History</h2>
+      <p>3+5=8</p>
+    </div>
+    
+      <input class="display input" name="txt" id="display" readonly>
+      
+      <input class="result" id="result">
+    
+    
+    <span class="num clear sym" onclick="clr()">C</span>
+    
+    <span class="num sym" onclick="view('/')">÷</span>
+    <span class="num sym" onclick="view('*')"><ion-icon name="close-outline"></ion-icon></span>
+    <span class="num round sym back" onclick="back()"><ion-icon name="backspace-outline"></ion-icon></span>
+    
+    <span class="num" onclick="view('7'); compute()">7</span>
+    <span class="num" onclick="view('8'); compute()">8</span>
+    <span class="num" onclick="view('9'); compute()">9</span>
+    <span class="num sym" onclick="view('-')">-</span>
+    
+    <span class="num" onclick="view('4'); compute()">4</span>
+    <span class="num" onclick="view('5'); compute()">5</span>
+    <span class="num" onclick="view('6'); compute()">6</span>
+    <span class="num plus sym" onclick="view('+')">+</span>
+    
+    <span class="num" onclick="view('1'); compute()">1</span>
+    <span class="num" onclick="view('2'); compute()">2</span>
+    <span class="num" onclick="view('3'); compute()">3</span>
+    
+    <span class="num equal" onclick="document.calc.txt.value = calculate(document.calc.txt.value);">=</span>
+    <span class="num per" onclick="view('%')">%</span>
+    <span class="num" onclick="view('0'); compute()">0</span>
+    <span class="num" onclick="view('.'); compute()">.</span>
+    
+    
+  </form>
+  </figure>
+  <!--Script-->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    function view(num){
+    document.getElementById('display').value += num;
+  }
+  
+  function clr(){
+    document.getElementById('display').value = "";
+    document.getElementById('result').value = "0";
+    var operation = document.getElementById('display');
+    var result = document.getElementById('result');
+    
+    operation.style.cssText = `font-size: 40px; color: #FFBB06`
+    result.style.cssText = `font-size: 30px; color: #fff;`
+  }
+  
+  function back() {
+  var value = document.getElementById("display").value;
+  document.getElementById("display").value = value.substr(0, value.length - 1);
+  }
+  
+  
+  function compute(){
+    let x = document.getElementById('display').value;
+    var y = eval(x);
+    document.getElementById('result').value = y;
+  }
+  
+  var equalBtn = document.querySelector('.equal');
+  equalBtn.addEventListener('click', function(){
+    var operation = document.getElementById('display');
+    var result = document.getElementById('result');
+    
+    operation.style.cssText = `font-size: 30px; color: #fff`
+    result.style.cssText = `font-size: 40px; color: #FFBB06;`
+    
+  })
+  
+  let history = document.querySelector('.history');
+    
+    function calculate(v){
+      para = document.createElement('p');
+      data = v + "=" + eval(v);
+      para.innerText = data;
+      history.appendChild(para);
+      return eval(v);
+    }
+    function hisClr(){
+     var toDel = document.querySelectorAll('.history p');
+      toDel.innerText = "";
+    }
+  
+  </script>
+</body>
+
+</html>
