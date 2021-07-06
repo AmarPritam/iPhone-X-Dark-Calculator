@@ -101,8 +101,6 @@ ion-icon{
 }
 
 .equal {
-  grid-row: span 2;
-  height: 160px;
   background: #FFBB06;
   border-bottom-right-radius: 25px;
   font-weight: 300;
