@@ -27,8 +27,7 @@
     
     
     <span class="num clear sym" onclick="clr()">C</span>
-    
-    <span class="num sym" onclick="view('/')">÷</span>
+    <span class="num negative sym" onclick="makeNegative(display.value)">+/-</span>
     <span class="num sym" onclick="view('*')"><ion-icon name="close-outline"></ion-icon></span>
     <span class="num round sym back" onclick="back(); compute()"><ion-icon name="backspace-outline"></ion-icon></span>
     
@@ -46,11 +45,12 @@
     <span class="num" onclick="view('2'); compute()">2</span>
     <span class="num" onclick="view('3'); compute()">3</span>
     
-    <span class="num equal" onclick="document.calc.txt.value = calculate(document.calc.txt.value);">=</span>
+    
+    <span class="num sym" onclick="view('/')">÷</span>
     <span class="num per" onclick="view('%')">%</span>
     <span class="num" onclick="view('0'); compute()">0</span>
     <span class="num" onclick="view('.'); compute()">.</span>
-    
+    <span class="num equal" onclick="document.calc.txt.value = calculate(document.calc.txt.value);">=</span>
     
   </form>
 
@@ -77,7 +77,15 @@
   document.getElementById("display").value = value.substr(0, value.length - 1);
   }
   
-  
+  function makeNegative(result){
+  if(result.charAt(0)==='-') {
+  document.querySelector('.display').value = result.replace('-','');
+  }
+  else{
+  document.querySelector('.display').value = '-' + result;
+  }
+  }
+
   function compute(){
     let x = document.getElementById('display').value;
     var y = eval(x);
