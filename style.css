@@ -100,6 +100,8 @@ ion-icon{
 }
 
 .equal {
+  width: 80px;
+  height: 80px;
   background: #FFBB06;
   border-bottom-right-radius: 25px;
   font-weight: 300;
